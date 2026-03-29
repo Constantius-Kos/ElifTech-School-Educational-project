@@ -707,3 +707,12 @@
 .Active {
     font-weight: 900;
 }
+
+.ShopSideBar::-webkit-scrollbar,
+.SideBar::-webkit-scrollbar,
+.ProductGreedBody::-webkit-scrollbar,
+.OrderModalBody::-webkit-scrollbar,
+.CartItemsList::-webkit-scrollbar,
+.MainPage::-webkit-scrollbar {
+    display: none;
+}
