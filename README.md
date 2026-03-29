@@ -1,5 +1,7 @@
 # Delivery App 🍔🚚
 
+**🌐 [Live Demo](https://delivery-frontend-z69q.onrender.com)**
+
 Test assignment / Educational project for **ElifTech School** to create a full-fledged food and goods delivery web service.
 
 ## 🛠 Tech Stack
