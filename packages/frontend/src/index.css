@@ -1,0 +1,26 @@
+html {
+  height: 100dvh;
+  background-color: black;
+  color: goldenrod;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#root {
+  /* border: 3px dashed orangered; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
