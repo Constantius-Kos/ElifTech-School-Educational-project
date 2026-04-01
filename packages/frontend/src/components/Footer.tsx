@@ -1,4 +1,4 @@
-import cl from "./Shop.module.css"
+import cl from "./Footer.module.css"
 function Footer() {
     return (
         <div className={cl.Footer}>

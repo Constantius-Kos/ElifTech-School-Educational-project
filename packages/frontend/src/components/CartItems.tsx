@@ -1,37 +1,32 @@
-import cl from "./Shop.module.css"
-import type { IOrderItem } from "@shared/types"
+import cl from "./Cart.module.css"
 import imageMap from "../assets/images/index.js"
+import { useAppContext } from "../Context.tsx"
 
-interface ICartItems {
-    orderItems: IOrderItem[]
-    updateOrderItem: (quantity: number, orderItem: IOrderItem) => void
-    deleteOrderItem: (orderItem: IOrderItem) => void
-}
-function CartItems({ orderItems, updateOrderItem, deleteOrderItem }: ICartItems) {
+
+function CartItems() {
+    const { cartItems, dispatch } = useAppContext()
     // console.log(orderItems)
     return (
         <div className={cl.CartItems}>
             <div className={cl.CartItemsList}>
 
-                {orderItems.map((orderItem) => (
-                    <div key={orderItem.productId} className={cl.ProductInCart}>
+                {cartItems.map((cartItem) => (
+                    <div key={cartItem.productId} className={cl.ProductInCart}>
                         <div className={cl.ProductInCartImage}>
-                            <img src={imageMap[orderItem.img]} alt={orderItem.name} />
+                            <img src={imageMap[cartItem.img]} alt={cartItem.name} />
                         </div>
                         <div className={cl.ProductInCartInfo}>
-                            <p>{orderItem.name}</p>
-                            <p>Price: {orderItem.price}</p>
-                            <input type="number" value={orderItem.quantity} onChange={(e) => updateOrderItem(Number(e.target.value), orderItem)} />
+                            <p>{cartItem.name}</p>
+                            <p>Price: {cartItem.price}</p>
+                            <input type="number" value={cartItem.quantity} onChange={(e) => dispatch({ type: "CHANGE_CART_ITEM_QUANTITY", payload: { ...cartItem, quantity: Math.max(1, Number(e.target.value)) } })} />
                         </div>
                         <svg
                             className={cl.DeleteButton}
-                            onClick={() => deleteOrderItem(orderItem)}
+                            onClick={() => dispatch({ type: "DELETE_ITEM_FROM_CART", payload: cartItem })}
                             viewBox="0 0 512 512"
                             fill="currentColor"
                         >
-                            {/* Фон корзины (сделал его слегка прозрачным) */}
                             <rect x="114.402" y="220.724" fillOpacity="0.3" width="274.813" height="276.96" />
-                            {/* Контуры и крышка */}
                             <g>
                                 <path d="M182.746,422.305c-7.905,0-14.313-6.409-14.313-14.313v-91.604c0-7.904,6.408-14.313,14.313-14.313c7.905,0,14.313,6.409,14.313,14.313v91.604C197.06,415.895,190.652,422.305,182.746,422.305z" />
                                 <path d="M251.808,422.305c-7.905,0-14.313-6.409-14.313-14.313v-91.604c0-7.904,6.408-14.313,14.313-14.313c7.905,0,14.313,6.409,14.313,14.313v91.604C266.121,415.895,259.713,422.305,251.808,422.305z" />
@@ -44,7 +39,7 @@ function CartItems({ orderItems, updateOrderItem, deleteOrderItem }: ICartItems)
                 ))}
             </div>
             <div className={cl.CartItemsFooter}>
-                <p>Total price: {orderItems.reduce((acc, item) => acc + item.price * item.quantity, 0)} UAH</p>
+                <p>Total price: {cartItems?.reduce((acc, item) => acc + item.price * item.quantity, 0)} UAH</p>
             </div>
 
         </div>

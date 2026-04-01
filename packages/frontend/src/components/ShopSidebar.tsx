@@ -1,23 +1,30 @@
-import cl from './Shop.module.css';
+import cl from './ShopSidebar.module.css'
 // import { useState, useEffect } from 'react';
-// import { getShops } from '../api/api.js';
-import type { IShop } from '@shared/types.js';
 import imageMap from '../assets/images/index.js';
 import { useState } from 'react';
-interface IShopSidebar {
-    shops: IShop[]
-    onShopSelect: (shopID: string) => void
-}
+import { useAppContext } from '../Context.tsx'
+import type { IProduct } from '@shared/sharedTypes.js';
+import { getProducts } from '../api/api';
 
-function ShopSidebar({ shops, onShopSelect }: IShopSidebar) {
+
+function ShopSidebar() {
     const [selectedShop, setSelectedShop] = useState<string | null>(null);
     const [ratingRange, setRatingRange] = useState<{ min: number, max: number }>({ min: 0, max: 5 });
-    function handleShopSelect(shopID: string) {
+    const { shops, dispatch, } = useAppContext()
+
+
+ 
+
+
+    async function handleShopSelect(shopID: string) {
         setSelectedShop(shopID);
-        onShopSelect(shopID);
+        const products: IProduct[] = await getProducts(shopID);
+        console.log("handleShopSelect", products)
+        dispatch({ type: "SET_PRODUCTS", payload: products })
 
     }
     const filteredShops = shops.filter((shop) => shop.rating >= ratingRange.min && shop.rating <= ratingRange.max);
+
     return (
         <div className={cl.ShopSideBar}>
 

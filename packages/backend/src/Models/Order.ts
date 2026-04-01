@@ -1,9 +1,10 @@
 import { Schema, model, Document } from "mongoose";
-import type { IOrder } from "@shared/types.js"
+import type { IOrder } from "@shared/sharedTypes.js"
 
 
 const OrderSchema = new Schema<IOrder>({
     name: { type: String, required: true },
+    userId: { type: String },
     email: { type: String, required: true },
     phone: { type: String, required: true },
     address: { type: String, required: true },

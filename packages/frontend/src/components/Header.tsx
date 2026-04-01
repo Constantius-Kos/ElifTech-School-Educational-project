@@ -1,15 +1,38 @@
-import cl from "./Shop.module.css"
-interface IHeader {
-    setFlag: (flag: string) => void
-    flag: string
-}
-function Header({ setFlag, flag }: IHeader) {
+import { NavLink } from "react-router-dom"
+import cl from "./Header.module.css"
+import { useAppContext } from "../Context.tsx"
+function Header() {
+    const { cartItems, user, userOrders } = useAppContext()
+    console.log("userOrders", userOrders)
+    const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0)
+    const totalOrders = userOrders?.reduce((acc) => acc + 1, 0) || 0
     return (
-        <div className={cl.Header}>
-            <div onClick={() => setFlag("shop")} className={`${cl.HeaderItem} ${flag === "shop" ? cl.Active : ""}`}>Shop</div>
-            <div onClick={() => setFlag("cart")} className={`${cl.HeaderItem} ${flag === "cart" ? cl.Active : ""}`}>Cart</div>
-        </div>
+        <nav className={cl.Header}>
+            <NavLink
+                to="/"
+                className={({ isActive }) => isActive ? `${cl.Link} ${cl.Active}` : cl.Link}
+            >
+                Shop
+            </NavLink>
+            <div className={cl.Divider}>|</div>
+            <NavLink
+                to="/cart"
+                className={({ isActive }) => isActive ? `${cl.Link} ${cl.Active}` : cl.Link}
+            >
+                Shopping Cart
+                {totalItems > 0 && <span className={cl.Badge}>{totalItems}</span>}
+                <div className={cl.Divider}>|</div>
+            </NavLink>
+            {user && <NavLink to="/profile" className={({ isActive }) => isActive ? `${cl.Link} ${cl.Active}` : cl.Link}>Profile {totalOrders > 0 && <span className={cl.Badge}>{totalOrders}</span>}
+            </NavLink>
+            }
+            <NavLink
+                to="/login"
+                className={cl.Login}
+            >
+                Login
+            </NavLink>
+        </nav>
     )
 }
-
 export default Header

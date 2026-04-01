@@ -8,6 +8,7 @@ export interface IOrderItem {
 
 export interface IOrder {
     _id?: string,
+    userId?: string,
     createdAt?: string,
     name: string,
     email: string,
@@ -32,4 +33,11 @@ export interface IShop {
     img: string;
     rating: number;
     category: string;
+}
+
+export interface IUser {
+    _id?: string
+    name?: string
+    email: string
+    password: string
 }

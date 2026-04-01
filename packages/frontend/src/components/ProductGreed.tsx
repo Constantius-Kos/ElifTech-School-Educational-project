@@ -1,16 +1,13 @@
-import cl from './Shop.module.css';
-import type { IProduct, IOrderItem } from '@shared/types.js';
+import cl from './ShopPage.module.css';
 import imageMap from '../assets/images/index.js';
 import { useState } from 'react';
-interface IProductGreed {
-    products: IProduct[]
-    addOrderItem: (orderItem: IOrderItem) => void
-}
-function ProductGreed({ products, addOrderItem }: IProductGreed) {
-    console.log(products);
+import { useAppContext } from '../Context.tsx';
+
+function ProductGreed() {
+    const { products, dispatch } = useAppContext()
     const [category, setCategory] = useState<string>('All');
     const [sortType, setSortType] = useState<string>('')
-
+    console.log(products)
     const categories = [...new Set(products.map(p => p.category))];
 
     const filteredProducts = category === 'All' ? products : products.filter((product) => product.category === category);
@@ -24,6 +21,7 @@ function ProductGreed({ products, addOrderItem }: IProductGreed) {
             default: return 0;                                           // Как в оригинале
         }
     });
+
     if (!products.length) return null;
 
     return <div className={cl.ProductGreed}>
@@ -52,7 +50,7 @@ function ProductGreed({ products, addOrderItem }: IProductGreed) {
                     <h2>{product.name}</h2>
                     <p>{product.description}</p>
                     <p>{product.price} UAH</p>
-                    <button onClick={() => addOrderItem({ img: product.img, productId: product._id, name: product.name, price: product.price, quantity: 1 })}>Add to cart</button>
+                    <button onClick={() => dispatch({ type: "ADD_ITEM_TO_CART", payload: { img: product.img, productId: product._id, name: product.name, price: product.price, quantity: 1 } })}>Add to cart</button>
                 </div>
             ))}
         </div>
