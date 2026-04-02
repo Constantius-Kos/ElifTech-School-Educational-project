@@ -7,7 +7,8 @@ import Cart from './components/Cart.tsx'
 import LoginPage from './components/LoginPage.tsx'
 import { useAppContext } from './Context.tsx'
 import { useEffect } from 'react'
-import { getShops, getUserOrders } from './api/api.js'
+import { getShops, getUserOrders, getCoupons } from './api/api.js'
+import Profile from './components/Profile.tsx'
 function App() {
   const { isLoading, dispatch, user, order } = useAppContext()
 
@@ -23,11 +24,10 @@ function App() {
 
   useEffect(() => {
     const fetchUserOrders = async () => {
-      // 1. Добавляем проверку: если юзера нет или нет его ID, ничего не делаем
       if (!user || !user._id) return;
 
       try {
-        const orders = await getUserOrders(user._id); // Теперь TS уверен, что это строка
+        const orders = await getUserOrders(user._id);
         dispatch({ type: "SET_USER_ORDERS", payload: orders })
         console.log("orders", orders)
       } catch (error) {
@@ -36,8 +36,15 @@ function App() {
     };
 
     fetchUserOrders();
-  }, [dispatch, user, order]) // Следим за изменением user
+  }, [dispatch, user, order])
 
+  useEffect(() => {
+    const fetchCoupons = async () => {
+      const coupons = await getCoupons();
+      dispatch({ type: "SET_COUPONS", payload: coupons })
+    };
+    fetchCoupons();
+  }, [dispatch])
   return (
     <>
       {isLoading && (
@@ -53,6 +60,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </Router>

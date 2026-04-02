@@ -1,0 +1,139 @@
+.Profile {
+    /* border: 3px solid rgba(255, 217, 0, 0.500); */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    overflow: hidden;
+    gap: 10px;
+    padding: 10px;
+    margin: 3px 3px;
+
+}
+
+.ProfileHeader {
+    border: 3px solid rgba(255, 217, 0, 0.500);
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 10dvh;
+
+}
+
+.ProfileBody {
+    /* border: 3px solid rgba(255, 217, 0, 0.500); */
+    border-radius: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    /* padding: 10px; */
+}
+
+.OrderCard {
+    border: 3px solid rgba(255, 217, 0, 0.500);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    aspect-ratio: 4/2;
+    overflow: hidden;
+    padding: 10px;
+    font-size: clamp(0.5rem, 1.2vw, 1rem);
+}
+
+.OrderCard::-webkit-scrollbar {
+    display: none;
+}
+
+.ItemsImgs {
+    /* border: 3px solid rgba(255, 217, 0, 0.500); */
+    border-radius: 16px;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    overflow: auto;
+    max-width: 95%;
+    padding: 10px;
+}
+
+.ItemsImgs::-webkit-scrollbar {
+    display: none;
+}
+
+.ItemImg {
+    width: 100px;
+    height: 100px;
+}
+
+.CouponCard {
+    border: 3px solid rgba(255, 217, 0, 0.500);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    max-height: 30dvh;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.CouponCardBody {
+    /* border: 3px solid rgba(255, 217, 0, 0.500); */
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+.ShopImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .OrderCard {
+        width: 100%;
+        padding: 0px;
+        aspect-ratio: 4/1.5;
+        flex-shrink: 0;
+        font-size: clamp(0.8rem, 3vw, 1.2rem);
+    }
+
+    .CouponCard {
+        width: 100%;
+        padding: 5px;
+
+        flex-shrink: 0;
+        font-size: clamp(0.8rem, 2.2vw, 1rem);
+    }
+
+    .ProfileBody {
+        /* border: 3px solid rgba(8, 255, 24, 0.5); */
+
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding: 10px;
+        overflow: auto;
+    }
+
+    .ItemsImgs {
+        /* border: 3px solid rgba(8, 255, 24, 0.5); */
+        padding: 3px;
+    }
+
+    .ItemImg {
+        width: 70px;
+        height: 70px;
+    }
+}

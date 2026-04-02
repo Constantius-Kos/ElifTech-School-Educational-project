@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "start": "tsx src/index.ts"
+    "start": "tsx src/index.ts",
+    "seed": "tsx src/seeds.ts",
+    "seed:shops": "tsx src/seeds.ts --shops",
+    "seed:coupons": "tsx src/seeds.ts --coupons"
   },
   "keywords": [],
   "author": "",

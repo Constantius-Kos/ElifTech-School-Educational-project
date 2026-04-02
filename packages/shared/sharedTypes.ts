@@ -9,7 +9,7 @@ export interface IOrderItem {
 export interface IOrder {
     _id?: string,
     userId?: string,
-    createdAt?: string,
+    createdAt: string,
     name: string,
     email: string,
     phone: string,
@@ -40,4 +40,11 @@ export interface IUser {
     name?: string
     email: string
     password: string
+}
+export interface ICoupon {
+    _id?: string;
+    shopName: string;
+    shopLogo: string;
+    discountAmount: number; // Например, 10 или 20
+    expiryDate: string;     // ISO дата
 }

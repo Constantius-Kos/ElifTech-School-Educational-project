@@ -85,10 +85,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 45%;
-    min-height: 400px;
-    gap: 10px;
+    width: 30%;
     aspect-ratio: 3/5;
+    justify-content: space-between;
+    padding-bottom: 10px;
     overflow: hidden;
     text-align: center;
     font-size: clamp(0.5rem, 1.3vw, 1rem);
@@ -120,7 +120,7 @@
 
 .Product img {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .Product p {
@@ -160,7 +160,7 @@
         padding: 5px;
     }
 
-   
+
     .ProductGreed {
         /* border: 1px solid rgba(255, 217, 0, 0.500); */
         width: 100%;
@@ -207,7 +207,7 @@
 
     }
 
-    
+
 
 
     .OrderModal {

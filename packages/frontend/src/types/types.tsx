@@ -1,4 +1,4 @@
-import type { IShop, IProduct, IOrderItem, IOrder, IUser } from "@shared/sharedTypes.js"
+import type { IShop, IProduct, IOrderItem, IOrder, IUser, ICoupon } from "@shared/sharedTypes.js"
 import type { Dispatch } from "react"
 
 
@@ -13,6 +13,7 @@ export type Action =
     | { type: "SET_ORDER"; payload: IOrder | null }
     | { type: "SET_USER"; payload: IUser | null }
     | { type: "SET_USER_ORDERS"; payload: IOrder[] }
+    | { type: "SET_COUPONS"; payload: ICoupon[] }
 
 export interface IContext {
     shops: IShop[]
@@ -23,6 +24,7 @@ export interface IContext {
     order: IOrder | null
     user: IUser | null
     userOrders: IOrder[] | null
+    coupons: ICoupon[]
 }
 
 export interface IState {
@@ -33,4 +35,5 @@ export interface IState {
     order: IOrder | null
     user: IUser | null
     userOrders: IOrder[] | null
+    coupons: ICoupon[]
 }

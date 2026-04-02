@@ -41,6 +41,9 @@ function reducer(state: IState, action: Action): IState {
             return { ...state, userOrders: action.payload }
         case "SET_ORDER":
             return { ...state, order: action.payload }
+        case "SET_COUPONS":
+            console.log("SET_COUPONS", action.payload)
+            return { ...state, coupons: action.payload }
         default:
             return state
     }

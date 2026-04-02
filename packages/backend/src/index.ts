@@ -6,6 +6,7 @@ import shopRoutes from "./Routes/ShopRoutes.js";
 import productRoutes from "./Routes/ProductsRoutes.js";
 import orderRoutes from "./Routes/OrdersRoutes.js";
 import userRoutes from "./Routes/UsersRoutes.js";
+import couponRoutes from "./Routes/CouponsRoutes.js";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use("/shops", shopRoutes);
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/users", userRoutes);
+app.use("/coupons", couponRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Shop from './Models/Shop.js';
 import Product from './Models/Product.js';
+import Coupon from './Models/Coupon.js';
 
 dotenv.config();
 
@@ -80,26 +81,80 @@ const DATA = [
 ];
 
 
+const COUPONS = [
+    {
+        shopName: 'McDonny',
+        shopLogo: 'McDonny',
+        discountAmount: 15,
+        expiryDate: '2026-12-31'
+    },
+    {
+        shopName: 'Sushi Star',
+        shopLogo: 'SushiStar',
+        discountAmount: 20,
+        expiryDate: '2026-06-01'
+    },
+    {
+        shopName: 'Gadget World',
+        shopLogo: 'Gadget',
+        discountAmount: 10,
+        expiryDate: '2026-05-20'
+    },
+    {
+        shopName: 'Pixel Play',
+        shopLogo: 'Pixel',
+        discountAmount: 50,
+        expiryDate: '2026-01-01'
+    },
+    {
+        shopName: 'Urban Style',
+        shopLogo: 'Urban',
+        discountAmount: 25,
+        expiryDate: '2026-08-15'
+    },
+    {
+        shopName: 'Elegant Look',
+        shopLogo: 'Elegant',
+        discountAmount: 10,
+        expiryDate: '2026-07-01'
+    }
+];
+
+
+const args = process.argv.slice(2);
+const seedAll = args.length === 0;
+const shouldSeedShops = seedAll || args.includes('--shops');
+const shouldSeedCoupons = seedAll || args.includes('--coupons');
+
 async function seed() {
     try {
         await mongoose.connect(process.env.DEV_MONGO_URI!);
         console.log('Connected to DB...');
 
-        await Shop.deleteMany({});
-        await Product.deleteMany({});
+        if (shouldSeedShops) {
+            await Shop.deleteMany({});
+            await Product.deleteMany({});
+            console.log('Cleared Shops and Products...');
 
-        for (const item of DATA) {
-            // 1. Создаем магазин
-            const shop = await Shop.create(item.shop);
-            console.log(`Created shop: ${shop.name}`);
+            for (const item of DATA) {
+                const shop = await Shop.create(item.shop);
+                console.log(`Created shop: ${shop.name}`);
 
-            // 2. Берем уникальные товары ЭТОГО магазина и вставляем их для него
-            const productsWithId = item.products.map(p => ({ ...p, shopId: shop._id }));
-            await Product.insertMany(productsWithId);
-            console.log(`  - Added ${item.products.length} unique products for ${shop.name}`);
+                const productsWithId = item.products.map(p => ({ ...p, shopId: shop._id }));
+                await Product.insertMany(productsWithId);
+                console.log(`  - Added ${item.products.length} products for ${shop.name}`);
+            }
         }
 
-        console.log('Success! 🌱');
+        if (shouldSeedCoupons) {
+            await Coupon.deleteMany({});
+            console.log('Cleared Coupons...');
+
+            await Coupon.insertMany(COUPONS);
+            console.log(`Successfully seeded ${COUPONS.length} coupons! 🌱`);
+        }
+
+        console.log('Seed task finished successfully! 🌱');
         process.exit(0);
     } catch (err) {
         console.error('Seed error:', err);
@@ -108,3 +163,5 @@ async function seed() {
 }
 
 seed();
+
+
