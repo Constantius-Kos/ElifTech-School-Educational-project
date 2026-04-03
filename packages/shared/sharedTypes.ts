@@ -9,7 +9,7 @@ export interface IOrderItem {
 export interface IOrder {
     _id?: string,
     userId?: string,
-    createdAt: string,
+    createdAt?: string,
     name: string,
     email: string,
     phone: string,

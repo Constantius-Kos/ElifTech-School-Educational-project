@@ -9,7 +9,8 @@ const initialState: IState = {
     cartItems: [],
     order: null,
     user: null,
-    userOrders: null
+    userOrders: null,
+    coupons: []
 
 }
 
