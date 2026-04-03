@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom"
 import cl from "./Header.module.css"
 import { useAppContext } from "../Context.tsx"
 function Header() {
-    const { cartItems, user, userOrders } = useAppContext()
-    console.log("userOrders", userOrders)
+    const { cartItems, user, userOrders, dispatch } = useAppContext()
+    // console.log("userOrders", userOrders)
     const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0)
     const totalOrders = userOrders?.reduce((acc) => acc + 1, 0) || 0
     return (
@@ -26,12 +26,13 @@ function Header() {
             {user && <NavLink to="/profile" className={({ isActive }) => isActive ? `${cl.Link} ${cl.Active}` : cl.Link}>Profile {totalOrders > 0 && <span className={cl.Badge}>{totalOrders}</span>}
             </NavLink>
             }
-            <NavLink
+            {user && <NavLink to="/login" className={cl.Login} onClick={() => { dispatch({ type: "LOGOUT" }); localStorage.removeItem("token") }}>Logout</NavLink>}
+            {!user && <NavLink
                 to="/login"
                 className={cl.Login}
             >
                 Login
-            </NavLink>
+            </NavLink>}
         </nav>
     )
 }

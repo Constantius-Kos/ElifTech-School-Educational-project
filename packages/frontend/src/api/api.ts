@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { ICoupon, IOrder, IProduct, IShop, IUser,  } from "@shared/sharedTypes.js"
+import type { ICoupon, IOrder, IProduct, IShop, IUser, ILoginResponse } from "@shared/sharedTypes.js"
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3002";
 
@@ -18,7 +18,7 @@ export const createOrder = async (order: IOrder): Promise<IOrder> => {
     return response.data;
 }
 
-export const login = async (email: string, password: string): Promise<IUser> => {
+export const login = async (email: string, password: string,): Promise<ILoginResponse> => {
     const response = await axios.post(`${API_URL}/users/login`, { email, password });
     return response.data;
 }
@@ -30,5 +30,14 @@ export const getUserOrders = async (userId: string,): Promise<IOrder[]> => {
 
 export const getCoupons = async (): Promise<ICoupon[]> => {
     const response = await axios.get(`${API_URL}/coupons`);
+    return response.data;
+}
+
+export const getProfile = async (token: string): Promise<IUser> => {
+    const response = await axios.get(`${API_URL}/users/profile`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
     return response.data;
 }

@@ -3,6 +3,7 @@ import type { Dispatch } from "react"
 
 
 export type Action =
+    | { type: "LOGOUT" }
     | { type: "SET_SHOPS"; payload: IShop[] }
     | { type: "SET_IS_LOADING"; payload: boolean }
     | { type: "SET_PRODUCTS"; payload: IProduct[] }

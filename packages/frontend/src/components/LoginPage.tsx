@@ -15,8 +15,10 @@ function LoginPage() {
     })
     const onSubmit = async (data: ILoginForm) => {
         try {
-            const user = await login(data.email, data.password)
-            dispatch({ type: "SET_USER", payload: user })
+            const res = await login(data.email, data.password)
+            dispatch({ type: "SET_USER", payload: res.user })
+            localStorage.setItem("token", res.token)
+            console.log(res)
             navigate("/shop")
         } catch (error) {
             console.log(error)

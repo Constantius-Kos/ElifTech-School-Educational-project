@@ -2,6 +2,14 @@ import type { IState, Action } from "./types/types.tsx"
 
 function reducer(state: IState, action: Action): IState {
     switch (action.type) {
+        case 'LOGOUT':
+            return {
+                ...state, products: [],
+                cartItems: [],
+                order: null,
+                user: null,
+                userOrders: null
+            }
         case "SET_SHOPS":
             return { ...state, shops: action.payload }
         case "SET_IS_LOADING":
@@ -34,15 +42,15 @@ function reducer(state: IState, action: Action): IState {
             return { ...state, cartItems: [] }
         }
         case "SET_USER":
-            console.log("SET_USER", action.payload)
+            // console.log("SET_USER", action.payload)
             return { ...state, user: action.payload }
         case "SET_USER_ORDERS":
-            console.log("SET_USER_ORDERS", action.payload)
+            // console.log("SET_USER_ORDERS", action.payload)
             return { ...state, userOrders: action.payload }
         case "SET_ORDER":
             return { ...state, order: action.payload }
         case "SET_COUPONS":
-            console.log("SET_COUPONS", action.payload)
+            // console.log("SET_COUPONS", action.payload)
             return { ...state, coupons: action.payload }
         default:
             return state

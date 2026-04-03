@@ -7,7 +7,7 @@ function ProductGreed() {
     const { products, dispatch } = useAppContext()
     const [category, setCategory] = useState<string>('All');
     const [sortType, setSortType] = useState<string>('')
-    console.log(products)
+    // console.log(products)
     const categories = [...new Set(products.map(p => p.category))];
 
     const filteredProducts = category === 'All' ? products : products.filter((product) => product.category === category);

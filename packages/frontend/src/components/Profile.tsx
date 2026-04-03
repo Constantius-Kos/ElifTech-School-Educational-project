@@ -9,8 +9,7 @@ function Profile() {
     const handleTabChange = (tab: string) => {
         setSearchParams({ tab })
     }
-    console.log("Profile: userOrders", userOrders)
-    console.log("Profile: coupons", coupons)
+
     return (
         <div className={cl.Profile}>
             <div className={cl.ProfileHeader}>
@@ -24,7 +23,9 @@ function Profile() {
                         <div>{order.totalPrice} UAH ({order.items.length})</div>
                         <div className={cl.ItemsImgs}>
                             {order.items.map((item) => (
-                                <img key={item.productId} src={images[item.img]} alt={item.name} className={cl.ItemImg} />
+                                <div key={item.productId} className={cl.ItemImgContainer}>
+                                    <img src={images[item.img]} alt={item.name} className={cl.ItemImg} />
+                                </div>
                             ))}
                         </div>
                     </div>
@@ -33,10 +34,11 @@ function Profile() {
                     <div key={coupon._id} className={cl.CouponCard}>
                         <div>{coupon.shopName}</div>
                         <div className={cl.CouponCardBody}>
+
                             <img src={images[coupon.shopLogo]} alt={coupon.shopName} className={cl.ShopImg} />
                             <div>-{coupon.discountAmount}%</div>
                         </div>
-                            <div>{new Date(coupon.expiryDate).toLocaleDateString()}</div>
+                        <div>{new Date(coupon.expiryDate).toLocaleDateString()}</div>
                     </div>
 
                 ))}

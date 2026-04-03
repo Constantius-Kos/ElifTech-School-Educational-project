@@ -8,7 +8,7 @@
     padding: 10px 20px;
     box-shadow: 0 1px 12px rgba(255, 217, 0, 0.500);
     gap: 10px;
-    height: 10dvh;
+    height: 8dvh;
     flex-shrink: 0;
 
 }
@@ -23,6 +23,7 @@
     font-size: 1.2rem;
     font-weight: 500;
     transition: all 0.3s ease;
+    align-items: center;
     position: relative;
 }
 
@@ -77,4 +78,16 @@
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
+
+}
+@media (max-width: 768px) {
+   .Link{
+    font-size: 0.7rem;
+   }
+   .Badge{
+    font-size: 0.7rem;
+   }
+   .Login{
+    font-size: 0.7rem;
+   }
 }

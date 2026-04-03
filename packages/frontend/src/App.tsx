@@ -7,44 +7,55 @@ import Cart from './components/Cart.tsx'
 import LoginPage from './components/LoginPage.tsx'
 import { useAppContext } from './Context.tsx'
 import { useEffect } from 'react'
-import { getShops, getUserOrders, getCoupons } from './api/api.js'
+import { getShops, getUserOrders, getCoupons, getProfile } from './api/api.js'
 import Profile from './components/Profile.tsx'
 function App() {
   const { isLoading, dispatch, user, order } = useAppContext()
 
+  // Эффект 1: Первичная инициализация (один раз при загрузке)
   useEffect(() => {
-    const fetchShops = async () => {
+    const initApp = async () => {
       dispatch({ type: "SET_IS_LOADING", payload: true })
-      const shops = await getShops();
-      dispatch({ type: "SET_SHOPS", payload: shops })
-      dispatch({ type: "SET_IS_LOADING", payload: false })
-    };
-    fetchShops();
-  }, [dispatch])
-
-  useEffect(() => {
-    const fetchUserOrders = async () => {
-      if (!user || !user._id) return;
 
       try {
-        const orders = await getUserOrders(user._id);
-        dispatch({ type: "SET_USER_ORDERS", payload: orders })
-        console.log("orders", orders)
+        const token = localStorage.getItem("token")
+
+        // Запускаем всё параллельно
+        const [shops, coupons] = await Promise.all([
+          getShops(),
+          getCoupons()
+        ])
+        dispatch({ type: "SET_SHOPS", payload: shops })
+        dispatch({ type: "SET_COUPONS", payload: coupons })
+        // Если есть токен, восстанавливаем профиль
+        if (token) {
+          const userData = await getProfile(token)
+          dispatch({ type: "SET_USER", payload: userData })
+        }
       } catch (error) {
-        console.error("Failed to fetch orders:", error);
+        console.error("Initialization error:", error)
+      } finally {
+        dispatch({ type: "SET_IS_LOADING", payload: false })
       }
-    };
-
-    fetchUserOrders();
-  }, [dispatch, user, order])
-
-  useEffect(() => {
-    const fetchCoupons = async () => {
-      const coupons = await getCoupons();
-      dispatch({ type: "SET_COUPONS", payload: coupons })
-    };
-    fetchCoupons();
+    }
+    initApp()
   }, [dispatch])
+
+  // Эффект 2: Реакция на изменение пользователя (загрузка заказов)
+  useEffect(() => {
+
+    const userId = user?._id
+    if (!userId) return
+    const fetchOrders = async () => {
+      try {
+        const orders = await getUserOrders(userId)
+        dispatch({ type: "SET_USER_ORDERS", payload: orders })
+      } catch (error) {
+        console.error("Failed to fetch orders:", error)
+      }
+    }
+    fetchOrders()
+  }, [dispatch, user?._id, order])
   return (
     <>
       {isLoading && (

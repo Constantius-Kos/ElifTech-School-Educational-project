@@ -36,7 +36,7 @@ export interface IShop {
 }
 
 export interface IUser {
-    _id?: string
+    _id: string
     name?: string
     email: string
     password: string
@@ -47,4 +47,8 @@ export interface ICoupon {
     shopLogo: string;
     discountAmount: number; // Например, 10 или 20
     expiryDate: string;     // ISO дата
+}
+export interface ILoginResponse {
+    user: IUser;
+    token: string;
 }
