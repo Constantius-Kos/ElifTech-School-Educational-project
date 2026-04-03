@@ -19,7 +19,7 @@ function Profile() {
             <div className={cl.ProfileBody}>
                 {tab === "orders" && userOrders?.map((order) => (
                     <div key={order._id} className={cl.OrderCard}>
-                        <div>{new Date(order.createdAt).toLocaleDateString()}</div>
+                        <div>{order.createdAt ? new Date(order.createdAt).toLocaleDateString() : 'No date'}</div>
                         <div>{order.totalPrice} UAH ({order.items.length})</div>
                         <div className={cl.ItemsImgs}>
                             {order.items.map((item) => (
@@ -38,7 +38,7 @@ function Profile() {
                             <img src={images[coupon.shopLogo]} alt={coupon.shopName} className={cl.ShopImg} />
                             <div>-{coupon.discountAmount}%</div>
                         </div>
-                        <div>{new Date(coupon.expiryDate).toLocaleDateString()}</div>
+                        <div>{coupon.expiryDate ? new Date(coupon.expiryDate).toLocaleDateString() : 'No expiry'}</div>
                     </div>
 
                 ))}
