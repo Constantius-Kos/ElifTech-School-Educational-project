@@ -2,6 +2,7 @@ import cl from "./Profile.module.css"
 import { useSearchParams, } from "react-router-dom"
 import { useAppContext } from "../Context"
 import images from "../assets/images/index.js"
+import Timer from "./shared/Timer.tsx"
 function Profile() {
     const { userOrders, coupons } = useAppContext()
     const [searchParams, setSearchParams] = useSearchParams({ tab: "orders" })
@@ -34,9 +35,16 @@ function Profile() {
                     <div key={coupon._id} className={cl.CouponCard}>
                         <div>{coupon.shopName}</div>
                         <div className={cl.CouponCardBody}>
+                            <div className={cl.CouponCardBodyImg}>
+                                <img src={images[coupon.shopLogo]} alt={coupon.shopName} className={cl.ShopImg} />
+                            </div>
+                            <div className={cl.CouponCardBodyInfo}>
+                                <div>-{coupon.discountAmount}%</div>
+                                <div className={cl.TimerContainer}>
 
-                            <img src={images[coupon.shopLogo]} alt={coupon.shopName} className={cl.ShopImg} />
-                            <div>-{coupon.discountAmount}%</div>
+                                    <Timer expiryDate={coupon.expiryDate} />
+                                </div>
+                            </div>
                         </div>
                         <div>{coupon.expiryDate ? new Date(coupon.expiryDate).toLocaleDateString() : 'No expiry'}</div>
                     </div>
