@@ -10,6 +10,6 @@
 
 @media (max-width: 768px) {
     .Timer {
-        font-size: clamp(0.5rem, 1.2vw, 1rem);
+        font-size: clamp(0.5rem, 3vw, 1rem);
     }
 }

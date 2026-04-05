@@ -118,7 +118,7 @@
 }
 
 .CouponCardBody {
-    border: 3px solid rgba(255, 217, 0, 0.500);
+    /* border: 1px dashed rgba(255, 38, 0, 0.5); */
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -126,7 +126,7 @@
 }
 
 .CouponCardBodyImg {
-    border: 3px solid rgba(255, 217, 0, 0.500);
+    /* border: 1px dashed rgba(255, 0, 238, 0.5); */
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -142,7 +142,7 @@
 }
 
 .CouponCardBodyInfo {
-    border: 3px solid rgba(0, 255, 51, 0.5);
+    /* border: 1px dashed rgb(255, 230, 0); */
     display: flex;
     width: 100%;
     flex-direction: column;
