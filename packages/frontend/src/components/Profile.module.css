@@ -1,74 +1,71 @@
 .Profile {
-    /* border: 3px solid rgba(255, 217, 0, 0.500); */
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    width: 100%;
-    overflow: hidden;
-    gap: 10px;
-    padding: 10px;
-    margin: 3px 3px;
-
+  /* border: 3px solid rgba(255, 217, 0, 0.500); */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  overflow: hidden;
+  gap: 10px;
+  padding: 10px;
+  margin: 3px 3px;
 }
 
 .ProfileHeader {
-    border: 3px solid rgba(255, 217, 0, 0.500);
-    border-radius: 16px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 10dvh;
-
+  border: 3px solid rgba(255, 217, 0, 0.5);
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 10dvh;
 }
 
 .ProfileBody {
-    /* border: 3px solid rgba(255, 217, 0, 0.500); */
-    border-radius: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 10px;
-    /* padding: 10px; */
+  /* border: 3px solid rgba(255, 217, 0, 0.500); */
+  border-radius: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  /* padding: 10px; */
 }
 
 .OrderCard {
-    border: 3px solid rgba(255, 217, 0, 0.500);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 20%;
-    aspect-ratio: 4/2;
-    overflow: hidden;
-    padding: 10px;
-    font-size: clamp(0.5rem, 1.2vw, 1rem);
+  border: 3px solid rgba(255, 217, 0, 0.5);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  aspect-ratio: 4/2;
+  overflow: hidden;
+  padding: 10px;
+  font-size: clamp(0.5rem, 1.2vw, 1rem);
 }
 
 .OrderCard::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .ItemsImgs {
-    /* border: 3px solid rgba(255, 217, 0, 0.500); */
-    border-radius: 16px;
-    display: flex;
-    /* flex-shrink: 0; */
-    /* flex-grow: 1; */
-    justify-content: space-evenly;
-    align-items: center;
-    /* gap: 10px; */
-    overflow-x: auto;
-    width: 95%;
-    /* padding: 10px; */
+  /* border: 3px solid rgba(255, 217, 0, 0.500); */
+  border-radius: 16px;
+  display: flex;
+  /* flex-shrink: 0; */
+  /* flex-grow: 1; */
+  justify-content: space-evenly;
+  align-items: center;
+  /* gap: 10px; */
+  overflow-x: auto;
+  width: 95%;
+  /* padding: 10px; */
 }
 
 /* Псевдокод для Profile.module.css */
 .ItemsImgs::-webkit-scrollbar {
-    /* display: block;  */
-    height: 10px;
-
+  /* display: block;  */
+  height: 10px;
 }
 
 /* .ItemsImgs::-webkit-scrollbar-track {
@@ -76,129 +73,25 @@
     } */
 
 .ItemsImgs::-webkit-scrollbar-thumb {
-    background: rgba(218, 165, 32, 0.5);
-    /* box-shadow: 0 0 10px #ffd900;  */
-    border-radius: 4px;
-    cursor: pointer;
-
+  background: rgba(218, 165, 32, 0.5);
+  /* box-shadow: 0 0 10px #ffd900;  */
+  border-radius: 4px;
+  cursor: pointer;
 }
-
 
 .ItemsImgs::-webkit-scrollbar-thumb:hover {
-    background: goldenrod;
-    /* Яркое золото при наведении */
+  background: goldenrod;
+  /* Яркое золото при наведении */
 }
 
-
 .ItemImgContainer {
-    /* border: 1px dashed fuchsia; */
-    display: flex;
-    height: 100%;
-
-
+  /* border: 1px dashed fuchsia; */
+  display: flex;
+  height: 100%;
 }
 
 .ItemImg {
-    height: 100%;
-    /* border: 1px dashed white; */
-    object-fit: contain;
-}
-
-.CouponCard {
-    border: 3px solid rgba(255, 217, 0, 0.500);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-    max-height: 30dvh;
-    overflow: hidden;
-    padding: 10px;
-}
-
-.CouponCardBody {
-    /* border: 1px dashed rgba(255, 38, 0, 0.5); */
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.CouponCardBodyImg {
-    /* border: 1px dashed rgba(255, 0, 238, 0.5); */
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 10px;
-}
-
-.ShopImg {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-}
-
-.CouponCardBodyInfo {
-    /* border: 1px dashed rgb(255, 230, 0); */
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.TimerContainer {
-    /* border: 3px solid rgba(0, 255, 51, 0.5); */
-    display: flex;
-    width: 100%;
-    height: 50%;
-}
-
-@media (max-width: 768px) {
-    .OrderCard {
-        width: 100%;
-        padding: 5px;
-        aspect-ratio: 4/1.5;
-        flex-shrink: 0;
-        font-size: clamp(0.8rem, 3vw, 1.2rem);
-    }
-
-    .CouponCard {
-        width: 100%;
-        padding: 5px;
-
-        flex-shrink: 0;
-        font-size: clamp(0.8rem, 2.2vw, 1rem);
-    }
-
-    .ProfileBody {
-        /* border: 3px solid rgba(8, 255, 24, 0.5); */
-
-        flex-direction: column;
-        flex-wrap: nowrap;
-        padding: 10px;
-        overflow: auto;
-    }
-
-    .ItemsImgs {
-        /* border: 3px solid rgba(8, 255, 24, 0.5); */
-        padding: 3px;
-    }
-
-    .ItemsImgs::-webkit-scrollbar {
-        height: 3px;
-    }
-
-    .ItemImgContainer {
-        /* border: 1px dashed fuchsia; */
-        display: flex;
-        height: 100%;
-    }
-
-    .ItemImg {
-        height: 90%;
-    }
+  height: 100%;
+  /* border: 1px dashed white; */
+  object-fit: contain;
 }

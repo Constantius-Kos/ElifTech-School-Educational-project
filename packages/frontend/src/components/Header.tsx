@@ -23,7 +23,14 @@ function Header() {
                 {totalItems > 0 && <span className={cl.Badge}>{totalItems}</span>}
                 <div className={cl.Divider}>|</div>
             </NavLink>
-            {user && <NavLink to="/profile" className={({ isActive }) => isActive ? `${cl.Link} ${cl.Active}` : cl.Link}>Profile {totalOrders > 0 && <span className={cl.Badge}>{totalOrders}</span>}
+            <NavLink
+                to="/coupons"
+                className={({ isActive }) => isActive ? `${cl.Link} ${cl.Active}` : cl.Link}
+            >
+                Coupons Store
+                <div className={cl.Divider}>|</div>
+            </NavLink>
+            {user && <NavLink to="/profile?tab=orders" className={({ isActive }) => isActive ? `${cl.Link} ${cl.Active}` : cl.Link}>Profile {totalOrders > 0 && <span className={cl.Badge}>{totalOrders}</span>}
             </NavLink>
             }
             {user && <NavLink to="/login" className={cl.Login} onClick={() => { dispatch({ type: "LOGOUT" }); localStorage.removeItem("token") }}>Logout</NavLink>}

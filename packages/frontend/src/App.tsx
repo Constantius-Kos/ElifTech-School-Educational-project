@@ -9,10 +9,11 @@ import { useAppContext } from './Context.tsx'
 import { useEffect } from 'react'
 import { getShops, getUserOrders, getCoupons, getProfile } from './api/api.js'
 import Profile from './components/Profile.tsx'
+import CouponsStore from './components/CouponsStore.tsx'
 function App() {
   const { isLoading, dispatch, user, order } = useAppContext()
 
-  // Эффект 1: Первичная инициализация (один раз при загрузке)
+  // Отримуємо магазини та купони, у випдаку логіна + дані користувача
   useEffect(() => {
     const initApp = async () => {
       dispatch({ type: "SET_IS_LOADING", payload: true })
@@ -20,14 +21,15 @@ function App() {
       try {
         const token = localStorage.getItem("token")
 
-        // Запускаем всё параллельно
+        //Запускаємо все паралельно
         const [shops, coupons] = await Promise.all([
           getShops(),
           getCoupons()
         ])
         dispatch({ type: "SET_SHOPS", payload: shops })
         dispatch({ type: "SET_COUPONS", payload: coupons })
-        // Если есть токен, восстанавливаем профиль
+
+        //Якщо є токен, відновлюємо профіль
         if (token) {
           const userData = await getProfile(token)
           dispatch({ type: "SET_USER", payload: userData })
@@ -41,7 +43,7 @@ function App() {
     initApp()
   }, [dispatch])
 
-  // Эффект 2: Реакция на изменение пользователя (загрузка заказов)
+  // Отримуємо замовлення користувача
   useEffect(() => {
 
     const userId = user?._id
@@ -56,6 +58,8 @@ function App() {
     }
     fetchOrders()
   }, [dispatch, user?._id, order])
+
+
   return (
     <>
       {isLoading && (
@@ -72,6 +76,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/coupons" element={<CouponsStore />} />
         </Routes>
         <Footer />
       </Router>

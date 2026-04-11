@@ -77,6 +77,13 @@ const DATA = [
             { name: 'Silk Tie', description: 'Blue', price: 40, img: 'Tie', category: 'Accessories' },
             { name: 'Leather Belt', description: 'Black', price: 55, img: 'Belt', category: 'Accessories' }
         ]
+    },
+    {
+        shop: { name: 'TEST_SHOP', img: 'test_shop', rating: 5, category: 'all' },
+        products: [
+
+        ]
+
     }
 ];
 

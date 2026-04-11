@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose"
-import type { IUser } from "@shared/sharedTypes.js"
+import type { IUser, IUserCoupon} from "@shared/sharedTypes.js"
+
 
 const userSchema = new Schema<IUser>({
     name: { type: String },

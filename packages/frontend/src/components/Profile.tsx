@@ -1,15 +1,32 @@
 import cl from "./Profile.module.css"
 import { useSearchParams, } from "react-router-dom"
+import { useEffect } from "react"
 import { useAppContext } from "../Context"
 import images from "../assets/images/index.js"
-import Timer from "./shared/Timer.tsx"
+import { getUserCoupons } from "../api/api.js"
+import CouponCard from "./CouponCard.tsx"
+
 function Profile() {
-    const { userOrders, coupons } = useAppContext()
+    const { userOrders, userCoupons, dispatch } = useAppContext()
     const [searchParams, setSearchParams] = useSearchParams({ tab: "orders" })
     const tab = searchParams.get("tab")
     const handleTabChange = (tab: string) => {
         setSearchParams({ tab })
     }
+
+    //Отримуємо купони користувача
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (token) {
+            async function setUserCoupons(token: string) {
+                const data = await getUserCoupons(token)
+                dispatch({ type: "SET_USER_COUPONS", payload: data })
+            }
+            setUserCoupons(token)
+        }
+        return
+
+    }, [dispatch])
 
     return (
         <div className={cl.Profile}>
@@ -31,24 +48,8 @@ function Profile() {
                         </div>
                     </div>
                 ))}
-                {tab === "coupons" && coupons?.map((coupon) => (
-                    <div key={coupon._id} className={cl.CouponCard}>
-                        <div>{coupon.shopName}</div>
-                        <div className={cl.CouponCardBody}>
-                            <div className={cl.CouponCardBodyImg}>
-                                <img src={images[coupon.shopLogo]} alt={coupon.shopName} className={cl.ShopImg} />
-                            </div>
-                            <div className={cl.CouponCardBodyInfo}>
-                                <div>-{coupon.discountAmount}%</div>
-                                <div className={cl.TimerContainer}>
-
-                                    <Timer expiryDate={coupon.expiryDate} />
-                                </div>
-                            </div>
-                        </div>
-                        <div>{coupon.expiryDate ? new Date(coupon.expiryDate).toLocaleDateString() : 'No expiry'}</div>
-                    </div>
-
+                {tab === "coupons" && userCoupons?.map((coupon) => (
+                    <CouponCard key={coupon._id} coupon={coupon} place="profile" />
                 ))}
             </div>
         </div>

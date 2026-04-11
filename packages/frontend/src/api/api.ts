@@ -1,13 +1,17 @@
 import axios from "axios";
-import type { ICoupon, IOrder, IProduct, IShop, IUser, ILoginResponse } from "@shared/sharedTypes.js"
+import type { ICoupon, IOrder, IProduct, IShop, IUser, ILoginResponse, IUserCoupon } from "@shared/sharedTypes.js"
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3002";
 
 export const getShops = async (): Promise<IShop[]> => {
+
     const response = await axios.get(`${API_URL}/shops`);
     return response.data;
 }
-
+export const getProductsLazy = async (page: number, limit: number): Promise<IProduct[]> => {
+    const response = await axios.get(`${API_URL}/products?page=${page}&limit=${limit}`);
+    return response.data;
+}
 export const getProducts = async (shopId: string): Promise<IProduct[]> => {
     const response = await axios.get(`${API_URL}/products/${shopId}`);
     return response.data;
@@ -35,6 +39,24 @@ export const getCoupons = async (): Promise<ICoupon[]> => {
 
 export const getProfile = async (token: string): Promise<IUser> => {
     const response = await axios.get(`${API_URL}/users/profile`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return response.data;
+}
+
+export const buyCoupon = async (couponId: string, token: string): Promise<{ message: string, userCouponArray: IUserCoupon[] }> => {
+    const response = await axios.post(`${API_URL}/coupons/buy`, { couponId }, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return response.data;
+}
+
+export const getUserCoupons = async (token: string): Promise<IUserCoupon[]> => {
+    const response = await axios.get(`${API_URL}/coupons/get`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

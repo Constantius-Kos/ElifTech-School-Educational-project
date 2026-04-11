@@ -1,0 +1,206 @@
+.ProductGreed {
+  /* border: 1px solid rgba(218, 165, 32, 0.402); */
+  border-radius: 16px;
+  display: flex;
+
+  flex-direction: column;
+  width: 70%;
+}
+
+.ProductGreedHeader {
+  /* border: 1px solid rgba(255, 217, 0, 0.391); */
+  border-radius: 16px;
+  display: flex;
+  flex-grow: 0;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  gap: 10px;
+  font-size: clamp(0.3rem, 2.5vw, 2rem);
+}
+
+.SortName {
+  display: flex;
+  gap: 5px;
+}
+
+.SortPrice {
+  display: flex;
+  gap: 5px;
+}
+
+.ProductGreedHeader button {
+  background-color: #000000;
+  border: none;
+  color: rgba(218, 165, 32, 1);
+  /* border: 1px solid rgb(96, 78, 34); */
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  /* font-size: clamp(0.3rem, 1vw, 1rem); */
+  padding: 10px;
+}
+
+.ActiveButton {
+  text-shadow: -0.3px 0 currentColor, 0.3px 0 currentColor;
+}
+
+.ProductGreedBody {
+  border: 1px solid rgba(218, 165, 32, 0.399);
+  border-radius: 16px;
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  /* height: fit-content; */
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-between;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 10px;
+  gap: 20px;
+}
+.BodyHeader {
+  /* border: 1px dashed wheat; */
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0 5px;
+  gap: 5px;
+}
+.ActivePage {
+  border: 1px dashed floralwhite;
+}
+.Product {
+  border: 1px solid rgba(255, 217, 0, 0.391);
+  background-color: #161616;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  aspect-ratio: 1;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  overflow: hidden;
+  text-align: center;
+  font-size: clamp(0.1rem, 1vw, 1rem);
+}
+
+.Product:hover {
+  background-color: #0b0b0b;
+  box-shadow: 0 0 10px rgba(255, 217, 0, 0.5);
+}
+
+.Product button {
+  background-color: #0b0b0b;
+  color: goldenrod;
+  border: 2px solid goldenrod;
+  padding: 10px;
+  width: 60%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: clamp(0.5rem, 1.3vw, 1rem);
+}
+
+.Product button:active {
+  box-shadow: inset 0 0 10px rgba(255, 217, 0, 0.5);
+}
+
+.Product img {
+  /* width: 100%; */
+  height: 50%;
+  object-fit: contain;
+}
+
+.Product p {
+  /* border: 1px dashed white; */
+  margin: 0;
+}
+
+.Product h2 {
+  /* border: 1px dashed white; */
+  margin: 0;
+}
+
+.Header {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .ProductGreed {
+    /* border: 1px solid rgb(0, 255, 55); */
+    width: 100%;
+    padding: 2px;
+    align-content: start;
+    align-items: start;
+    flex-grow: 1;
+    overflow: auto;
+    gap: 10px 5px;
+    /* Сетка товаров тоже на всю ширину */
+  }
+
+  .ProductGreedHeader {
+    border: 1px solid rgba(255, 217, 0, 0.5);
+    display: flex;
+    padding: 3px;
+  }
+
+  .ProductGreedHeader button {
+    font-size: clamp(0.7rem, 1.3vw, 1rem);
+    padding: 3px;
+  }
+
+  .CategorySort {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .Product {
+    width: 45%;
+    max-width: 300px;
+    aspect-ratio: 3/4.5;
+    height: auto;
+    min-height: auto;
+    /* align-self: start; */
+    font-size: clamp(0.6rem, 2vw, 1rem);
+  }
+
+  .Product button {
+    padding: 3px;
+    font-size: clamp(0.3rem, 2.5vw, 2rem);
+  }
+
+  .Product img {
+    /* border: 1px solid rgba(255, 217, 0, 0.500); */
+    height: 50%;
+    object-fit: contain;
+  }
+
+  .OrderModal {
+    width: 100%;
+    height: 100%;
+    font-size: clamp(1rem, 1rem, 2rem);
+  }
+
+  .OrderModalContent {
+    width: 90dvw;
+    height: 90dvh;
+    min-height: 80dvh;
+    min-width: unset;
+    gap: 5px;
+  }
+
+  .OrderModalHeader {
+    font-size: clamp(0.6rem, 0.7rem, 1rem);
+  }
+
+  .OrderModalBody {
+    flex-shrink: 1;
+    max-height: none;
+  }
+}

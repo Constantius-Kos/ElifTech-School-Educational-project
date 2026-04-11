@@ -1,3 +1,4 @@
+
 export interface IOrderItem {
     img: string,
     productId: string,
@@ -36,17 +37,23 @@ export interface IShop {
 }
 
 export interface IUser {
-    _id: string
+    _id?: string
     name?: string
     email: string
     password: string
+    userCoupons: IUserCoupon[] | string[],
 }
 export interface ICoupon {
     _id?: string;
     shopName: string;
     shopLogo: string;
-    discountAmount: number; // Например, 10 или 20
-    expiryDate: string;     // ISO дата
+    discountAmount: number;
+    expiryDate: string;
+}
+export interface IUserCoupon extends ICoupon {
+    ownerId: string
+    quantity: number,
+    couponId: string,
 }
 export interface ILoginResponse {
     user: IUser;

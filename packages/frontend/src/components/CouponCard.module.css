@@ -1,17 +1,110 @@
 .CouponCard {
-    border: 1px solid gold;
+    border: 3px solid rgba(255, 217, 0, 0.500);
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 100%;
+    /* justify-content: center; */
+    align-items: center;
+    width: 20%;
+    min-width: 300px;
+    flex-grow: 0;
+    aspect-ratio: 4/2;
+    /* max-height: 30dvh; */
+    overflow: hidden;
     padding: 10px;
-    border-radius: 8px;
-    background-color: #25260034;
-    box-shadow: 0 1px 12px rgba(255, 217, 0, 0.500);
+    align-self: center;
+}
+
+.CouponCardBody {
+    /* border: 1px dashed rgb(0, 255, 0); */
+    display: flex;
+    /* flex-grow: 1; */
+    flex-shrink: 2;
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+    /* height: 70%; */
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.CouponCardBodyImg {
+    /* border: 1px dashed rgb(255, 234, 0); */
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+
+
 }
 
 .ShopImg {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
+    /* border: 1px dashed rgba(255, 0, 238, 0.5); */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.CouponCardBodyInfo {
+    /* border: 1px dashed rgb(255, 230, 0); */
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.TimerContainer {
+    /* border: 3px solid rgba(0, 255, 51, 0.5); */
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+@media (max-width: 768px) {
+    .OrderCard {
+        width: 100%;
+        padding: 5px;
+        aspect-ratio: 4/1.5;
+        flex-shrink: 0;
+        font-size: clamp(0.8rem, 3vw, 1.2rem);
+    }
+
+    .CouponCard {
+        width: 100%;
+        padding: 5px;
+
+        flex-shrink: 0;
+        font-size: clamp(0.8rem, 2.2vw, 1rem);
+    }
+
+    .ProfileBody {
+        /* border: 3px solid rgba(8, 255, 24, 0.5); */
+
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding: 10px;
+        overflow: auto;
+    }
+
+    .ItemsImgs {
+        /* border: 3px solid rgba(8, 255, 24, 0.5); */
+        padding: 3px;
+    }
+
+    .ItemsImgs::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    .ItemImgContainer {
+        /* border: 1px dashed fuchsia; */
+        display: flex;
+        height: 100%;
+    }
+
+    .ItemImg {
+        height: 90%;
+    }
 }
