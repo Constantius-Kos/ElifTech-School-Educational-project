@@ -14,7 +14,9 @@ function reducer(state: IState, action: Action): IState {
     case 'SET_SHOPS':
       return { ...state, shops: action.payload };
     case 'SET_PRODUCTS':
-      return { ...state, products: action.payload };
+      return { ...state, products: action.payload.products, totalProducts: action.payload.totalCount };
+    case 'ADD_PRODUCTS':
+      return { ...state, products: [...state.products, ...action.payload.products], totalProducts: action.payload.totalCount };
     case 'ADD_ITEM_TO_CART': {
       const isItemExist = state.cartItems.find(
         (item) => item.productId === action.payload.productId
@@ -57,7 +59,6 @@ function reducer(state: IState, action: Action): IState {
       // console.log("SET_COUPONS", action.payload)
       return { ...state, coupons: action.payload };
     case 'SET_USER_COUPONS':
-      console.log('SET_USER_COUPONS', action.payload);
       return { ...state, userCoupons: action.payload };
     case 'SET_SELECTED_SHOP_ID':
       return { ...state, selectedShopId: action.payload };

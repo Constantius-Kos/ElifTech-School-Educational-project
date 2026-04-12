@@ -2,19 +2,23 @@ import cl from './ProductGreed.module.css';
 import { useState } from 'react';
 import { useAppContext } from '../Context.tsx';
 import ProductCart from './ProductCard.tsx';
+import { getProducts } from '../api/api.ts';
+import type { IProductResponse } from '../../../shared/sharedTypes.js';
+import useActions from '../utils/useActions.ts';
 
 function ProductGreed() {
-  const { products, selectedShopId } = useAppContext();
+  const { products, selectedShopId, totalProducts } = useAppContext();
+  const { setSelectedShopId, setProducts } = useActions();
   const [category, setCategory] = useState<string>('All');
   const [sortType, setSortType] = useState<string>('');
   const [p, setP] = useState<number>(1);
   console.log(selectedShopId);
   const categories = [...new Set(products.map((p) => p.category))];
-  const count = Math.ceil(products.length / 6);
+  const count = Math.ceil(totalProducts / 6);
   const pages = Array.from({ length: count }, (_, i) => i + 1);
   //   console.log(pages);
   //   console.log(count);
-  const productsArr = products.slice((p - 1) * 6, (p - 1) * 6 + 6);
+  const productsArr = products.slice((p - 1) * 6, p * 6);
 
   const filteredProducts =
     category === 'All'
@@ -35,7 +39,16 @@ function ProductGreed() {
         return 0; // Как в оригинале
     }
   });
-
+  async function handlePagination(
+    shopId: string,
+    page?: number,
+    limit?: number
+  ) {
+    setSelectedShopId(shopId);
+    const res: IProductResponse = await getProducts({ shopId, page, limit });
+    console.log('handlePagination:', res);
+    setProducts(res, true);
+  }
   if (!products.length) return null;
 
   return (
@@ -87,7 +100,10 @@ function ProductGreed() {
         <div className={cl.BodyHeader}>
           {pages.map((page) => (
             <div
-              onClick={() => setP(page)}
+              onClick={() => {
+                setP(page);
+                handlePagination(selectedShopId, page, 6);
+              }}
               className={page === p ? cl.ActivePage : ''}
             >
               {page}

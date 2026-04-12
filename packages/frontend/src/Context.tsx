@@ -13,6 +13,7 @@ const initialState: IState = {
   coupons: [],
   userCoupons: [],
   selectedShopId: '',
+  totalProducts: 0,
 };
 
 const Context = createContext<IContext | null>(null);

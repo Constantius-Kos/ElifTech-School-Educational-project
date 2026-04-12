@@ -1,61 +1,65 @@
-
 export interface IOrderItem {
-    img: string,
-    productId: string,
-    name: string,
-    price: number,
-    quantity: number,
+  img: string;
+  productId: string;
+  name: string;
+  price: number;
+  quantity: number;
 }
 
 export interface IOrder {
-    _id?: string,
-    userId?: string,
-    createdAt?: string,
-    name: string,
-    email: string,
-    phone: string,
-    address: string,
-    items: IOrderItem[],
-    totalPrice: number,
+  _id?: string;
+  userId?: string;
+  createdAt?: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  items: IOrderItem[];
+  totalPrice: number;
 }
 export interface IProduct {
-    _id: string
-    shopId: string,
-    name: string,
-    description: string,
-    price: number,
-    img: string,
-    category: string,
+  _id: string;
+  shopId: string;
+  name: string;
+  description: string;
+  price: number;
+  img: string;
+  category: string;
 }
 
 export interface IShop {
-    _id: string
-    name: string;
-    img: string;
-    rating: number;
-    category: string;
+  _id: string;
+  name: string;
+  img: string;
+  rating: number;
+  category: string;
 }
 
 export interface IUser {
-    _id?: string
-    name?: string
-    email: string
-    password: string
-    userCoupons: IUserCoupon[] | string[],
+  _id?: string;
+  name?: string;
+  email: string;
+  password: string;
+  userCoupons: IUserCoupon[] | string[];
 }
 export interface ICoupon {
-    _id?: string;
-    shopName: string;
-    shopLogo: string;
-    discountAmount: number;
-    expiryDate: string;
+  _id?: string;
+  shopName: string;
+  shopLogo: string;
+  discountAmount: number;
+  expiryDate: string;
 }
 export interface IUserCoupon extends ICoupon {
-    ownerId: string
-    quantity: number,
-    couponId: string,
+  ownerId: string;
+  quantity: number;
+  couponId: string;
 }
 export interface ILoginResponse {
-    user: IUser;
-    token: string;
+  user: IUser;
+  token: string;
+}
+
+export interface IProductResponse {
+  products: IProduct[];
+  totalCount: number;
 }

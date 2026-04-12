@@ -6,6 +6,7 @@ import type {
   IUser,
   ICoupon,
   IUserCoupon,
+  IProductResponse
 } from '@shared/sharedTypes.js';
 import type { ActionDispatch } from 'react';
 
@@ -15,7 +16,8 @@ export type Action =
   | { type: 'LOGOUT' }
   | { type: 'SET_SHOPS'; payload: IShop[] }
   | { type: 'SET_IS_LOADING'; payload: boolean }
-  | { type: 'SET_PRODUCTS'; payload: IProduct[] }
+  | { type: 'SET_PRODUCTS'; payload: IProductResponse }
+  | { type: 'ADD_PRODUCTS'; payload: IProductResponse }
   | { type: 'ADD_ITEM_TO_CART'; payload: IOrderItem }
   | { type: 'CHANGE_CART_ITEM_QUANTITY'; payload: IOrderItem }
   | { type: 'DELETE_ITEM_FROM_CART'; payload: IOrderItem }
@@ -25,7 +27,8 @@ export type Action =
   | { type: 'SET_USER_ORDERS'; payload: IOrder[] }
   | { type: 'SET_COUPONS'; payload: ICoupon[] }
   | { type: 'SET_USER_COUPONS'; payload: IUserCoupon[] }
-  | { type: 'SET_SELECTED_SHOP_ID'; payload: string };
+  | { type: 'SET_SELECTED_SHOP_ID'; payload: string }
+  ;
 
 export interface IContext {
   shops: IShop[];
@@ -39,6 +42,7 @@ export interface IContext {
   coupons: ICoupon[];
   userCoupons: IUserCoupon[];
   selectedShopId: string;
+  totalProducts: number;
 }
 
 export interface IState {
@@ -52,4 +56,5 @@ export interface IState {
   coupons: ICoupon[];
   userCoupons: IUserCoupon[];
   selectedShopId: string;
+  totalProducts: number;
 }

@@ -3,7 +3,7 @@ import cl from './ShopSidebar.module.css';
 import imageMap from '../assets/images/index.js';
 import { useState } from 'react';
 import { useAppContext } from '../Context.tsx';
-import type { IProduct } from '@shared/sharedTypes.js';
+import type { IProductResponse } from '@shared/sharedTypes.js';
 import { getProducts } from '../api/api';
 import useActions from '../utils/useActions.ts';
 
@@ -16,10 +16,15 @@ function ShopSidebar() {
     max: 5,
   });
 
-  async function handleShopSelect(shopID: string) {
-    setSelectedShopId(shopID);
-    const products: IProduct[] = await getProducts(shopID);
-    setProducts(products);
+  async function handleShopSelect(
+    shopId: string,
+    page?: number,
+    limit?: number
+  ) {
+    setSelectedShopId(shopId);
+    const res: IProductResponse = await getProducts({ shopId, page, limit });
+    console.log('handleShopSelect:', res);
+    setProducts(res);
   }
 
   const filteredShops = shops.filter(
