@@ -18,7 +18,7 @@ function CartItems() {
                         <div className={cl.ProductInCartInfo}>
                             <p>{cartItem.name}</p>
                             <p>Price: {cartItem.price}</p>
-                            <input type="number" value={cartItem.quantity} onChange={(e) => dispatch({ type: "CHANGE_CART_ITEM_QUANTITY", payload: { ...cartItem, quantity: Math.max(1, Number(e.target.value)) } })} />
+                            <input type="number" value={cartItem.quantity || ''} onChange={(e) => dispatch({ type: "CHANGE_CART_ITEM_QUANTITY", payload: { ...cartItem, quantity: Number(e.target.value) } })} />
                         </div>
                         <svg
                             className={cl.DeleteButton}
