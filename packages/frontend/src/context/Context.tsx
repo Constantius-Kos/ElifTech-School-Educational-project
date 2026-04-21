@@ -1,20 +1,7 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { type IState, type IContext } from './types/types.tsx';
+import { type IContext } from '../types/types.tsx';
 import reducer from './Reducer.tsx';
-
-const initialState: IState = {
-  shops: [],
-  isLoading: true,
-  products: [],
-  cartItems: [],
-  order: null,
-  user: null,
-  userOrders: null,
-  coupons: [],
-  userCoupons: [],
-  selectedShopId: '',
-  totalProducts: 0,
-};
+import initialState from './initialState.ts';
 
 const Context = createContext<IContext | null>(null);
 
@@ -26,7 +13,7 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
     </Context.Provider>
   );
 }
-
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAppContext(): IContext {
   const context = useContext(Context);
   if (!context) {

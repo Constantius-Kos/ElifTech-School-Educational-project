@@ -2,27 +2,28 @@ import cl from './ShopSidebar.module.css';
 // import { useState, useEffect } from 'react';
 import imageMap from '../assets/images/index.js';
 import { useState } from 'react';
-import { useAppContext } from '../Context.tsx';
+import { useAppContext } from '../context/Context.tsx';
 import type { IProductResponse } from '@shared/sharedTypes.js';
 import { getProducts } from '../api/api';
 import useActions from '../utils/useActions.ts';
+import { useSearchParams } from 'react-router-dom';
 
 function ShopSidebar() {
   const { setSelectedShopId, setProducts } = useActions();
   const { shops, selectedShopId } = useAppContext();
-
   const [ratingRange, setRatingRange] = useState<{ min: number; max: number }>({
     min: 0,
     max: 5,
   });
+  const [searchParams, setSearchParams] = useSearchParams();
 
   async function handleShopSelect(
     shopId: string,
-    page?: number,
-    limit?: number
+
   ) {
     setSelectedShopId(shopId);
-    const res: IProductResponse = await getProducts({ shopId, page, limit });
+    setSearchParams({ shopId });
+    const res: IProductResponse = await getProducts({ shopId });
     console.log('handleShopSelect:', res);
     setProducts(res);
   }
@@ -52,9 +53,8 @@ function ShopSidebar() {
         {filteredShops.map((shop) => (
           <div
             key={shop._id}
-            className={`${cl.Shop} ${
-              selectedShopId === shop._id ? cl.SelectedShop : ''
-            }`}
+            className={`${cl.Shop} ${selectedShopId === shop._id ? cl.SelectedShop : ''
+              }`}
             onClick={() => handleShopSelect(shop._id)}
           >
             <img src={imageMap[shop.img]} alt={shop.name} />

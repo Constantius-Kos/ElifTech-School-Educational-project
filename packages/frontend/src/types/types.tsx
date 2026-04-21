@@ -43,6 +43,7 @@ export interface IContext {
   userCoupons: IUserCoupon[];
   selectedShopId: string;
   totalProducts: number;
+  categories: string[];
 }
 
 export interface IState {
@@ -57,4 +58,6 @@ export interface IState {
   userCoupons: IUserCoupon[];
   selectedShopId: string;
   totalProducts: number;
+  categories: string[];
 }
+

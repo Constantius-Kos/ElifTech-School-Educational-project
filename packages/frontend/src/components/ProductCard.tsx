@@ -1,6 +1,6 @@
-import cl from './ProductGreed.module.css';
+import cl from './ProductGrid.module.css';
 import imageMap from '../assets/images/index.js';
-import { useAppContext } from '../Context.tsx';
+import { useAppContext } from '../context/Context.tsx';
 import type { IProduct } from '@shared/sharedTypes.js';
 
 function ProductCard({ product }: { product: IProduct }) {

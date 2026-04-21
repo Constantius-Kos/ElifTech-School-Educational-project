@@ -1,15 +1,15 @@
-import cl from "./CouponsStore.module.css"
-import { useAppContext } from "../Context.tsx"
-import CouponCard from "./CouponCard.tsx"
+import cl from './CouponsStore.module.css';
+import { useAppContext } from '../context/Context.tsx';
+import CouponCard from './CouponCard.tsx';
 function CouponsStore() {
-    const { coupons } = useAppContext()
-    return (
-        <div className={cl.CouponsStore}>
-            {coupons.map((coupon) => (
-                <CouponCard key={coupon._id} coupon={coupon} place="store" />
-            ))}
-        </div>
-    )
+  const { coupons } = useAppContext();
+  return (
+    <div className={cl.CouponsStore}>
+      {coupons.map((coupon) => (
+        <CouponCard key={coupon._id} coupon={coupon} place="store" />
+      ))}
+    </div>
+  );
 }
 
-export default CouponsStore
+export default CouponsStore;

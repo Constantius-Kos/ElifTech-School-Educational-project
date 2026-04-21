@@ -62,4 +62,5 @@ export interface ILoginResponse {
 export interface IProductResponse {
   products: IProduct[];
   totalCount: number;
+  categories: string[];
 }

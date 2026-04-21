@@ -1,22 +1,33 @@
-import type { IState, Action } from './types/types.tsx';
+import type { IState, Action } from '../types/types.tsx';
+import initialState from './initialState.ts';
+
 
 function reducer(state: IState, action: Action): IState {
   switch (action.type) {
     case 'LOGOUT':
       return {
-        ...state,
-        products: [],
-        cartItems: [],
-        order: null,
-        user: null,
-        userOrders: null,
+        ...initialState,
+        shops: state.shops,
+        coupons: state.coupons,
       };
     case 'SET_SHOPS':
       return { ...state, shops: action.payload };
     case 'SET_PRODUCTS':
-      return { ...state, products: action.payload.products, totalProducts: action.payload.totalCount };
+      console.log("SET_PRODUCTS", action.payload.categories)
+      return {
+        ...state,
+        products: action.payload.products,
+        totalProducts: action.payload.totalCount,
+        categories: action.payload.categories,
+      };
     case 'ADD_PRODUCTS':
-      return { ...state, products: [...state.products, ...action.payload.products], totalProducts: action.payload.totalCount };
+      console.log("ADD_PRODUCTS", action.payload.categories)
+      return {
+        ...state,
+        products: [...state.products, ...action.payload.products],
+        totalProducts: action.payload.totalCount,
+        categories: action.payload.categories,
+      };
     case 'ADD_ITEM_TO_CART': {
       const isItemExist = state.cartItems.find(
         (item) => item.productId === action.payload.productId
